@@ -9,7 +9,14 @@ script:
   - docker run -e CI=true jk-64/react-test npm test
 
 after_success:
-  - docker build -jk-64/complex-client ./client
-  - docker build -jk-64/complex-nginx ./nginx
-  - docker build -jk-64/complex-server ./server
-  - docker build -jk-64/complex-worker ./worker
+  - docker build -t jk-64/complex-client ./client
+  - docker build -t jk-64/complex-nginx ./nginx
+  - docker build -t jk-64/complex-server ./server
+  - docker build -t jk-64/complex-worker ./worker
+  # Log in docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Push image to docker hub
+  - docker build -t jk64/complex-client
+  - docker build -t jk64/complex-nginx
+  - docker build -t jk64/complex-server
+  - docker build -t jk64/complex-worker
