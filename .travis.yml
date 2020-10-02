@@ -17,7 +17,7 @@ after_success:
   # Log in docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push image to docker hub
-  - docker build jk64/complex-client
-  - docker build jk64/complex-nginx
-  - docker build jk64/complex-server
-  - docker build jk64/complex-worker
+  - docker push jk64/complex-client
+  - docker push jk64/complex-nginx
+  - docker push jk64/complex-server
+  - docker push jk64/complex-worker
